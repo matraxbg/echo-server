@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "echo-server.fullname" . }}-nodeport
+  labels:
+    {{- include "echo-server.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service_01.type }}
+  ports:
+    - port: {{ .Values.service_01.port }}
+      targetPort: {{ .Values.service_01.targetPort }}
+      nodePort: {{ .Values.service_01.nodePort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "echo-server.selectorLabels" . | nindent 4 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "echo-server.fullname" . }}-loadbalancer
+  labels:
+    {{- include "echo-server.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service_02.type }}
+  ports:
+    - port: {{ .Values.service_02.port }}
+      targetPort: {{ .Values.service_02.targetPort }}
+      {{- if .Values.service_02.nodePort }}
+      nodePort: {{ .Values.service_02.nodePort }}
+      {{- end }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "echo-server.selectorLabels" . | nindent 4 }}

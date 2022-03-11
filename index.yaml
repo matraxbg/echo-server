@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  echo-server:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-03-11T16:43:18.6901072+02:00"
+    description: A Helm chart for Kubernetes
+    digest: a11c47b0d3729462aed44684616175665a99332f250b68fe4b3ae5e051869904
+    name: echo-server
+    type: application
+    urls:
+    - https://github.com/matraxbg/echo-server/echo-server-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-03-11T16:43:18.6843404+02:00"
